@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=10%">
+    <title>Padrões de Aptidão - Quiz de Personalidade</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Padrões de Aptidão</h1>
+            <p class="text-lg text-gray-600">Critérios para avaliação das categorias de personalidade</p>
+        </div>
+
+        <!-- Standards Table -->
+        <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+            <div class="px-6 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+                <h2 class="text-xl font-semibold">Tabela de Referência</h2>
+            <p class="text-white/80">Intervalos de pontuação para cada categoria</p>
+        </div>
+
+        <div class="bg-white rounded-b-xl p-6">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-gray-50 border-b border-gray-200">
+                            <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoria</th>
+                            <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Intervalo Apto</th>
+                            <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                    <span class="font-medium text-gray-900">ASSISTÊNCIA</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">≥ 40%</span>
+                                </td>
+                                <td class="px-6 py-4 text-gray-600">Desejo de ajudar e cuidar dos outros</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                                        <span class="font-medium text-gray-900">INTRACEPÇÃO</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">≤ 70%</span>
+                                        </td>
+                                        <td class="px-6 py-4 text-gray-600">Tendência a analisar pensamentos e sentimentos próprios</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                                                <span class="font-medium text-gray-900">AFAGO</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">≤ 70%</span>
+                                            </td>
+                                            <td class="px-6 py-4 text-gray-600">Busca por atenção e cuidados quando está sofrendo</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                                        <span class="font-medium text-gray-900">DEFERÊNCIA</span>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">≥ 30%</span>
+                                                    </td>
+                                                    <td class="px-6 py-4 text-gray-600">Respeito e admiração por figuras de autoridade</td>
+                                                </tr>
+                                                <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <div class="flex items-center">
+                                                            <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                                            <span class="font-medium text-gray-900">AFILIAÇÃO</span>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">≥ 40%</span>
+                                                        </td>
+                                                        <td class="px-6 py-4 text-gray-600">Desejo de fazer e manter amizades</td>
+                                                    </tr>
+                                                    <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="flex items-center">
+                                                                    <div class="w-3 h-3 bg-yellow-500 rounded-full mr-3"></div>
+                                                                    <span class="font-medium text-gray-900">DOMINÂNCIA</span>
+                                                                </td>
+                                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">≤ 60%</span>
+                                                                    </td>
+                                                                    <td class="px-6 py-4 text-gray-600">Desejo de liderar e influenciar os outros</td>
+                                                                </tr>
+                                                                <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                                        <div class="flex items-center">
+                                                                            <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                                                            <span class="font-medium text-gray-900">DESEMPENHO</span>
+                                                                        </td>
+                                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">≥ 40%</span>
+                                                                        </td>
+                                                                        <td class="px-6 py-4 text-gray-600">Busca por realização e sucesso em tarefas</td>
+                                                                    </tr>
+                                                                    <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                                            <div class="flex items-center">
+                                                                                <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                                                                                <span class="font-medium text-gray-900">EXIBIÇÃO</span>
+                                                                            </td>
+                                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">≤ 50%</span>
+                                                                            </td>
+                                                                            <td class="px-6 py-4 text-gray-600">Desejo de ser o centro das atenções</td>
+                                                                        </tr>
+                                                                        <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                                <div class="flex items-center">
+                                                                                    <div class="w-3 h-3 bg-orange-500 rounded-full mr-3"></div>
+                                                                                    <span class="font-medium text-gray-900">AGRESSIVIDADE</span>
+                                                                        </td>
+                                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-orange-100 text-orange-800">30% - 70%</span>
+                                                                            </td>
+                                                                            <td class="px-6 py-4 text-gray-600">Tendência a expressar raiva e buscar vingança</td>
+                                                                    </tr>
+                                                                    <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                                            <div class="flex items-center">
+                                                                                <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                                                                <span class="font-medium text-gray-900">ORDEM</span>
+                                                                            </td>
+                                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">≥ 40%</span>
+                                                                            </td>
+                                                                            <td class="px-6 py-4 text-gray-600">Preferência por organização e planejamento</td>
+                                                                </tr>
+                                                                <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                                        <div class="flex items-center">
+                                                                            <div class="w-3 h-3 bg-teal-500 rounded-full mr-3"></div>
+                                                                            <span class="font-medium text-gray-900">PERSISTÊNCIA</span>
+                                                                    </td>
+                                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-teal-100 text-teal-800">60% - 90%</span>
+                                                                    </td>
+                                                                    <td class="px-6 py-4 text-gray-600">Capacidade de continuar trabalhando em tarefas até completá-las</td>
+                                                            </tr>
+                                                            <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                                    <div class="flex items-center">
+                                                                        <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                                                                        <span class="font-medium text-gray-900">MUDANÇA</span>
+                                                                </td>
+                                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">≤ 60%</span>
+                                                                </td>
+                                                                <td class="px-6 py-4 text-gray-600">Desejo por novidades e experiências diferentes</td>
+                                                        </tr>
+                                                        <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                                        <div class="flex items-center">
+                                                                            <div class="w-3 h-3 bg-indigo-500 rounded-full mr-3"></div>
+                                                                            <span class="font-medium text-gray-900">AUTONOMIA</span>
+                                                                    </td>
+                                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">30% - 70%</span>
+                                                                    </td>
+                                                                    <td class="px-6 py-4 text-gray-600">Desejo de independência e liberdade pessoal</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <!-- Legend -->
+                                    <div class="mt-8 bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Legenda dos Intervalos</h3>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div class="flex items-center">
+                                                <div class="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
+                                        <span class="text-gray-600">≥ X significa pontuação igual ou maior que X</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
+                                        <span class="text-gray-600">≤ X significa pontuação igual ou menor que X</div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-orange-500 rounded-full mr-3"></div>
+                                        <span class="text-gray-600">X - Y significa pontuação entre X e Y (inclusive)</div>
+                                </div>
+                            </div>
+                            <!-- Navigation -->
+                            <div class="mt-8 flex justify-center space-x-4">
+                                <a href="index.html" class="bg-indigo-500 text-white px-6 py-3 rounded-full font-medium hover:bg-indigo-600 transition-all duration-200 shadow-sm">
+                                    <div class="flex items-center space-x-2">
+                                        <i data-feather="home" class="w-4 h-4"></i>
+                                        <span>Voltar ao Início</span>
+                                    </div>
+                                </a>
+                                <a href="results.html" class="bg-purple-500 text-white px-6 py-3 rounded-full font-medium hover:bg-purple-600 transition-all duration-200 shadow-sm">
+                                        <div class="flex items-center space-x-2">
+                                            <i data-feather="bar-chart-2" class="w-4 h-4"></i>
+                                            <span>Ver Meus Resultados</span>
+                                        </div>
+                                    </a>
+</div>
+                            </div>
+
+                            <script src="script.js"></script>
+                            <script>
+                                feather.replace();
+                            </script>
+                        </body>
+                        </html>

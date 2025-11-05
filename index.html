@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Quest Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #6366f1;
+            --secondary: #f59e0b;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .progress-ring {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.6); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 to-amber-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <i data-feather="compass" class="text-white w-4 h-4"></i>
+            </div>
+            <h1 class="text-xl font-bold text-gray-800">IFPII</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="text-sm text-gray-600 hidden md:block">
+  <a href="standards.html" rel="noopener noreferrer" class="text-indigo-600 hover:underline">
+    Descubra seus traços de personalidade
+  </a>
+</div>
+
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Welcome Section -->
+        <section id="welcome-section" class="max-w-4xl mx-auto text-center mb-12 fade-in">
+            <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white/80 shadow-lg">
+                <div class="w-20 h-20 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 pulse-glow">
+                <i data-feather="user" class="text-white w-10 h-10"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Bem-vindo à Jornada da Personalidade! 🧭</h2>
+            <p class="text-gray-600 mb-6 text-lg">Responda 96 questões para descobrir seus traços de personalidade dominantes</p>
+            <button onclick="startQuiz()" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                Iniciar Jornada
+            </button>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz-section" class="max-w-4xl mx-auto hidden">
+            <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/80 shadow-lg slide-up">
+                <!-- Progress Bar -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-medium text-gray-600">Progresso</span>
+                        <span id="progress-text" class="text-sm font-medium text-gray-600">1/96</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3">
+                        <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 to-purple-600 h-3 rounded-full transition-all duration-500" style="width: 1.04%"></div>
+                </div>
+                <!-- Question -->
+                <div class="mb-8">
+                    <h3 id="question-text" class="text-xl font-semibold text-gray-800 mb-2 text-center"></h3>
+                    <p id="question-category" class="text-sm text-gray-500 text-center mb-6"></p>
+<!-- Rating Scale -->
+                    <div class="flex justify-between items-center mb-2 px-4">
+                        <span class="text-sm text-gray-500">Discordo Totalmente</span>
+                        <span class="text-sm text-gray-500">Concordo Totalmente</span>
+                    </div>
+                    
+                    <!-- Rating Buttons -->
+                    <div class="grid grid-cols-5 gap-3 mb-8">
+                        <button onclick="selectRating(1)" class="rating-btn bg-white border-2 border-gray-300 rounded-xl py-4 px-2 hover:border-indigo-400 transition-all duration-200 transform hover:scale-105">
+                            <div class="text-2xl">😠</div>
+                            <span class="text-sm text-gray-600 mt-1">1</span>
+                        </button>
+                        <button onclick="selectRating(2)" class="rating-btn bg-white border-2 border-gray-300 rounded-xl py-4 px-2 hover:border-indigo-400 transition-all duration-200 transform hover:scale-105">
+                                <div class="text-2xl">😕</div>
+                                <span class="text-sm text-gray-600 mt-1">2</span>
+                            </button>
+                            <button onclick="selectRating(3)" class="rating-btn bg-white border-2 border-gray-300 rounded-xl py-4 px-2 hover:border-indigo-400 transition-all duration-200 transform hover:scale-105">
+                                <div class="text-2xl">😐</div>
+                                <span class="text-sm text-gray-600 mt-1">3</span>
+                            </button>
+                            <button onclick="selectRating(4)" class="rating-btn bg-white border-2 border-gray-300 rounded-xl py-4 px-2 hover:border-indigo-400 transition-all duration-200 transform hover:scale-105">
+                                <div class="text-2xl">😊</div>
+                                <span class="text-sm text-gray-600 mt-1">4</span>
+                        </button>
+                        <button onclick="selectRating(5)" class="rating-btn bg-white border-2 border-gray-300 rounded-xl py-4 px-2 hover:border-indigo-400 transition-all duration-200 transform hover:scale-105">
+                                <div class="text-2xl">🤩</div>
+                                <span class="text-sm text-gray-600 mt-1">5</span>
+                            </button>
+                        </div>
+
+                        <!-- Navigation -->
+                        <div class="flex justify-between items-center">
+                            <button id="prev-btn" onclick="previousQuestion()" class="bg-gray-500 text-white px-6 py-2 rounded-full font-medium hover:bg-gray-600 transition-all duration-200 transform hover:scale-105 opacity-50 cursor-not-allowed">
+                                <div class="flex items-center space-x-2">
+                                    <i data-feather="arrow-left" class="w-4 h-4"></i>
+                                    <span>Anterior</span>
+                                </div>
+                            </button>
+                            <button id="next-btn" onclick="nextQuestion()" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2 rounded-full font-medium hover:from-indigo-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 opacity-50 cursor-not-allowed">
+                                <div class="flex items-center space-x-2">
+                                    <span>Próxima</span>
+                                    <i data-feather="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Results Section -->
+                <section id="results-section" class="max-w-6xl mx-auto hidden">
+                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/80 shadow-lg slide-up">
+                        <div class="text-center mb-8">
+                            <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-feather="award" class="text-white w-8 h-8"></i>
+                            </div>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-2">Sua Análise de Personalidade! 🎯</h2>
+                            <p class="text-gray-600">Descubra seus traços dominantes e áreas de desenvolvimento</p>
+                        </div>
+
+                        <!-- Results Grid -->
+                        <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                            <!-- Results will be populated here -->
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="flex justify-center space-x-4">
+                            <button onclick="restartQuiz()" class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-6 py-2 rounded-full font-medium hover:from-amber-600 hover:to-orange-700 transition-all duration-200 transform hover:scale-105">
+                                <div class="flex items-center space-x-2">
+                                    <i data-feather="refresh-cw" class="w-4 h-4"></i>
+                                    <span>Refazer Teste</span>
+                                </div>
+                            </button>
+                            <button onclick="downloadResults()" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-2 rounded-full font-medium hover:from-green-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105">
+                                <div class="flex items-center space-x-2">
+                                    <i data-feather="download" class="w-4 h-4"></i>
+                                    <span>Baixar Resultados</span>
+                                </div>
+                            </button>
+                        </div>
+                    </section>
+                </main>
+
+                <!-- Footer -->
+                <footer class="bg-white/60 backdrop-blur-sm border-t border-gray-200 mt-12">
+                    <div class="container mx-auto px-4 py-6">
+                        <div class="flex flex-col md:flex-row justify-between items-center">
+                            <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                                
+                                <span class="text-sm text-gray-600">Teste de personalidade PCCE</div>
+                                <div class="text-sm text-gray-500">© 2025 Betinho Ribeiro</div>
+                            </div>
+                        </footer>
+
+                        <script src="script.js"></script>
+                        <script>
+                            feather.replace();
+                        </script>
+                    <script src="https://huggingface.co/deepsite/deepsite-badge.js"></script>
+</body>
+                    </html>
