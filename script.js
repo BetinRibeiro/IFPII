@@ -202,84 +202,103 @@ function finishQuiz() {
     resultsSection.classList.remove("hidden");
     showResults();
 }
-// Mostrar resultados
+
+
 function showResults() {
     const resultsGrid = document.getElementById("results-grid");
     resultsGrid.innerHTML = '';
-    
-    // Calculate scores for each category
+
+    // Map das descrições de cada categoria
+    const categoryDescriptions = {
+        "ASSISTENCIA": "Desejo de ajudar e cuidar dos outros",
+        "INTRACEPÇÃO": "Tendência a analisar pensamentos e sentimentos próprios",
+        "AFAGO": "Busca por atenção e cuidados quando está sofrendo",
+        "DEFERENCIA": "Respeito e admiração por figuras de autoridade",
+        "AFILIAÇÃO": "Desejo de fazer e manter amizades",
+        "DOMINANCIA": "Desejo de liderar e influenciar os outros",
+        "DESEMPENHO": "Busca por realização e sucesso em tarefas",
+        "EXIBIÇÃO": "Desejo de ser o centro das atenções",
+        "AGRESSIVIDADE": "Tendência a expressar raiva e buscar vingança",
+        "ORDEM": "Preferência por organização e planejamento",
+        "PERSISTENCIA": "Capacidade de continuar trabalhando em tarefas até completá-las",
+        "MUDANÇA": "Desejo por novidades e experiências diferentes",
+        "AUTONOMIA": "Desejo de independência e liberdade pessoal"
+    };
+
+    // Calcula as pontuações de cada categoria
     const categoryScores = {};
-    
     personalityQuestions.forEach((question, index) => {
         const category = question[1];
         const answer = userAnswers[index];
-        
         if (answer !== null && answer !== undefined) {
-            if (!categoryScores[category]) {
-                categoryScores[category] = [];
-            }
+            if (!categoryScores[category]) categoryScores[category] = [];
             categoryScores[category].push(answer);
         }
     });
-    
-    // Calculate average for each category
+
+    // Calcula média por categoria
     categoryAverages = {};
     Object.keys(categoryScores).forEach(category => {
         const scores = categoryScores[category];
         const sum = scores.reduce((a, b) => a + b, 0);
         categoryAverages[category] = (sum / scores.length).toFixed(2);
     });
-    
-    // Display results with color coding based on standards
+
+    // Exibe resultados
     Object.keys(categoryAverages).forEach(category => {
-        const score = categoryAverages[category];
-        const percentage = (score / 5 * 100).toFixed(0);
-        
-        // Find the standard for this category
+        const avgScore = parseFloat(categoryAverages[category]);
+        const numericScore = avgScore * 20; // escala 1-5 para 20-100
+        const percentage = (avgScore / 5 * 100).toFixed(0);
+
+        // Busca padrão
         const standard = personalityStandards.find(s => s[0].toUpperCase() === category.toUpperCase());
         let isApto = false;
         let statusText = "Não Apto";
         let statusColor = "red";
-        
+        let intervalo = "";
+
         if (standard) {
-            const condition = standard[1];
-            const numericScore = parseFloat(score);
-            
-            // Evaluate the condition
-            if (condition.includes(">=") && condition.includes("<=")) {
-                const parts = condition.split("&&");
+            intervalo = standard[1].replace("&&", "-").trim(); // formata intervalo para exibir
+            if (intervalo.includes("-")) {
+                const parts = intervalo.split("-");
                 const min = parseFloat(parts[0].replace(">=", "").trim());
-            const max = parseFloat(parts[1].replace("<=", "").trim());
+                const max = parseFloat(parts[1].replace("<=", "").trim());
                 isApto = numericScore >= min && numericScore <= max;
-            } else if (condition.includes(">=")) {
-                const min = parseFloat(condition.replace(">=", "").trim());
+            } else if (intervalo.includes(">=")) {
+                const min = parseFloat(intervalo.replace(">=", "").trim());
                 isApto = numericScore >= min;
-            } else if (condition.includes("<=")) {
-                const max = parseFloat(condition.replace("<=", "").trim());
+            } else if (intervalo.includes("<=")) {
+                const max = parseFloat(intervalo.replace("<=", "").trim());
                 isApto = numericScore <= max;
             }
-            
+
             statusText = isApto ? "Apto" : "Não Apto";
             statusColor = isApto ? "green" : "red";
         }
-        
+
+        const description = categoryDescriptions[category.toUpperCase()] || "";
+
         const resultCard = document.createElement('div');
-        resultCard.className = 'bg-white rounded-xl p-6 border border-gray-200 shadow-sm';
+        resultCard.className = 'bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-4';
         resultCard.innerHTML = `
             <div class="flex items-center justify-between mb-4">
                 <h3 class="font-semibold text-gray-800">${category}</h3>
                 <div class="flex items-center space-x-2">
-                    <span class="text-2xl font-bold text-${statusColor}-600">${score}</span>
+                    <span class="text-2xl font-bold text-${statusColor}-600">${avgScore}</span>
                     <span class="px-3 py-1 rounded-full text-xs font-medium bg-${statusColor}-100 text-${statusColor}-800">${statusText}</span>
                 </div>
             </div>
             <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
                 <div class="bg-gradient-to-r from-${statusColor}-500 to-${statusColor}-600 h-3 rounded-full transition-all duration-500" style="width: ${percentage}%"></div>
-            <p class="text-sm text-gray-600">Média: ${score}/5 (${percentage}%)</p>
+            </div>
+            <p class="text-sm text-gray-600 mb-1">Média: ${avgScore}/5 (${percentage}%)</p>
+            <p class="text-sm text-gray-700"><strong>Intervalo Apto:</strong> ${intervalo}</p>
+            <p class="text-sm text-gray-700"><strong>Descrição:</strong> ${description}</p>
         `;
         resultsGrid.appendChild(resultCard);
     });
 }
+
 // Reiniciar quiz
 function restartQuiz() {
     resultsSection.classList.add("hidden");
